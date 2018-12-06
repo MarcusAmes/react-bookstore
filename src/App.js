@@ -60,34 +60,21 @@ class App extends Component {
   }
 
   render() {
+    const allBooks = this.state.books;
     const books = this.filtered()
-    const cart = books.filter(book => book.inCart)
+    const cart = allBooks.filter(book => book.inCart)
+    const total = cart.reduce((acc, inCart) => acc + inCart.price,0)
 
 
     return (
-      <div>
+      <div className="App">
         <Search change={this.changeFilter} filter={this.filter}/>
         <div style={{display: "flex"}}>
           <BookList books={books} addToCart={this.addToCart}/>
           <Cart books={cart} removeFromCart={this.removeFromCart}/>
+          <p>Total ${total}</p>
         </div>
       </div>
-      // <div className="App">
-      //   <header className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <p>
-      //       Edit <code>src/App.js</code> and save to reload.
-      //     </p>
-      //     <a
-      //       className="App-link"
-      //       href="https://reactjs.org"
-      //       target="_blank"
-      //       rel="noopener noreferrer"
-      //     >
-      //       Learn React
-      //     </a>
-      //   </header>
-      // </div>
     )
   }
 }

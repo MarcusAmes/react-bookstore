@@ -5,11 +5,7 @@ class Search extends Component {
   state = { search: ""}
 
   onChange = ({target: {name, value}}) => {
-    this.setState(() => {
-      let obj = {}
-      obj[name] = value;
-      return obj
-    }, () => {
+    this.setState(() => ({[name]: value}), () => {
       this.props.change(this.state)
     })
   }
